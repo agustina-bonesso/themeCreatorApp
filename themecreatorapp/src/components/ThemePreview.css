@@ -1,0 +1,8 @@
+.color-list__preview {
+    display: flex;
+    gap: .625rem
+}
+.color-box {
+  height: 4.375rem;
+  width: 4.375rem;
+}

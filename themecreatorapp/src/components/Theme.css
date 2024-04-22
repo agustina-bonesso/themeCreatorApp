@@ -1,0 +1,19 @@
+.theme__toggle-details-button {
+    all: unset;
+    background-color: transparent;
+    color: inherit;
+    cursor: pointer;
+    align-items: center;
+    gap: 0.5rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
+/*
+all: unset;
+  background-color: transparent;
+  color: inherit;
+  cursor: pointer;
+  align-items: center;
+  gap: 0.5rem;
+  grid-template-columns: 1fr auto;
+  */

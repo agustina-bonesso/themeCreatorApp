@@ -1,0 +1,5 @@
+.color-list {
+    display: grid;
+    gap: 0.5rem;
+    border: solid .1875rem;
+  }

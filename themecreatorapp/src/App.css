@@ -17,5 +17,7 @@
 .color-list {
   display: grid;
   gap: 0.5rem;
+}
+li {
   list-style: none;
 }
