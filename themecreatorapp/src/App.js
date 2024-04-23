@@ -1,27 +1,22 @@
 import "./App.css";
-//import ColorCard from "./components/ColorCard.js";
-import { themes } from "./db.js";
+import { themes as initialThemes } from "./db.js";
 import Theme from "./components/Theme.js";
 import ThemeForm from "./components/ThemeForm.js";
-import { useState } from "react";
 import { v4 as uuid } from "uuid";
+import useLocalStorageState from "use-local-storage-state";
 
 function App() {
-  const [themesArray, setThemesArray] = useState(themes);
+  const [themes, setThemes] = useLocalStorageState("InitialThemes", {
+    defaultValue: initialThemes,
+  });
 
   function onAddTheme(newTheme) {
-    setThemesArray([
-      {
-        id: uuid(),
-        ...newTheme,
-      },
-      ...themesArray,
-    ]);
+    setThemes([{ ...newTheme, id: uuid() }, ...themes]);
   }
   function handleDeleteTheme(id) {
     const updatedThemes = themes.filter((theme) => theme.id !== id);
 
-    setThemesArray(updatedThemes);
+    setThemes(updatedThemes);
   }
   return (
     <>
@@ -31,7 +26,7 @@ function App() {
       <main className="main-container">
         <ThemeForm onAddTheme={onAddTheme} />
         <ul>
-          {themesArray.map((theme) => {
+          {themes.map((theme) => {
             return (
               <li key={theme.id}>
                 <Theme

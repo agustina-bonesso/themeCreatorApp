@@ -39,3 +39,7 @@
 .color-card__hex {
   color: #75757b;
 }
+.color-card__name {
+  font-size: 1.125rem;
+  font-style: italic;
+}
