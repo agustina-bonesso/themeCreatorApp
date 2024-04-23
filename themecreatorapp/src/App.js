@@ -6,33 +6,22 @@ import ThemeForm from "./components/ThemeForm.js";
 import { useState } from "react";
 import { v4 as uuid } from "uuid";
 
-
 function App() {
-  const [themesArray, setNewThemes] = useState(themes);
+  const [themesArray, setThemesArray] = useState(themes);
 
-  function onAddTheme(data) {
-    setNewThemes([
+  function onAddTheme(newTheme) {
+    setThemesArray([
       {
         id: uuid(),
-        name: data.name,
-        colors: [
-          {
-            role: "primary",
-            value: data["primary-color"],
-          },
-          { role: "secondary", value: data["secondary-color"] },
-          {
-            role: "surface",
-            value: data["surface"],
-          },
-          {
-            role: "surface-on",
-            value: data["surface-on"],
-          },
-        ],
+        ...newTheme,
       },
       ...themesArray,
     ]);
+  }
+  function handleDeleteTheme(id) {
+    const updatedThemes = themes.filter((theme) => theme.id !== id);
+
+    setThemesArray(updatedThemes);
   }
   return (
     <>
@@ -45,7 +34,13 @@ function App() {
           {themesArray.map((theme) => {
             return (
               <li key={theme.id}>
-                <Theme themeName={theme.name} themeColors={theme.colors} />
+                <Theme
+                  themeName={theme.name}
+                  themeColors={theme.colors}
+                  onDeleteTheme={() => {
+                    handleDeleteTheme(theme.id);
+                  }}
+                />
               </li>
             );
           })}

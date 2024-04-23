@@ -3,7 +3,7 @@ import ThemeDetailView from "./ThemeDetailView";
 import ThemePreview from "./ThemePreview";
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import "./Theme.css"
-export default function Theme({ themeName, themeColors }) {
+export default function Theme({ themeName, themeColors, onDeleteTheme }) {
   const [showDetails, setShowDetails] = useState("false");
 
   function handleToggleView() {
@@ -22,7 +22,7 @@ export default function Theme({ themeName, themeColors }) {
       {showDetails ? (
         <ThemePreview themeColors={themeColors} />
       ) : (
-        <ThemeDetailView themeColors={themeColors}/>
+        <ThemeDetailView themeColors={themeColors} onDeleteTheme={onDeleteTheme}/>
       )}
     </section>
   );
