@@ -6,8 +6,17 @@ export default function ThemeForm({ onAddTheme }) {
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
-    onAddTheme(data);
-    console.log(data);
+    const newTheme = {
+      name: data.name,
+      colors: [
+        { role: "primary", value: data.primary },
+        { role: "secondary", value: data.secondary },
+        { role: "surface", value: data.surface },
+        { role: "surface-on", value: data["surface-on"] },
+      ],
+    };
+    onAddTheme(newTheme);
+
     event.target.reset();
     event.target.elements.name.focus();
   }
@@ -31,14 +40,14 @@ export default function ThemeForm({ onAddTheme }) {
             <input
               type="color"
               aria-label="primary-color"
-              name="primary-color"
+              name="primary"
               className="color-input"
-              defaultValue= "#596088"
+              defaultValue="#596088"
             />
             <input
               type="color"
               aria-label="secondary-color"
-              name="secondary-color"
+              name="secondary"
               className="color-input"
               defaultValue="#D2D6DB"
             />
