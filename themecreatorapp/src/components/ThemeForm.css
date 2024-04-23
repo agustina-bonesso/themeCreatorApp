@@ -1,0 +1,52 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: .625rem;
+    margin-top: 32px;
+    
+  }
+  
+  .form > h2 {
+    margin-bottom: 0;
+  }
+  
+  .form__fields {
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+  }
+  
+  .form__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .form__label {
+    font-size: 1.2rem;
+  }
+  
+  .form__input {
+    padding-inline: 20px;
+    padding-block: 10px;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    border: 1px solid;
+  }
+ .form__button{
+    padding-inline: 20px;
+    padding-block: 10px;
+    font-size: 1.2rem;
+    border-radius: 4px;
+ }
+ .form-input__color{
+    display: flex;
+    gap: .625rem;
+    margin-top: .625rem;
+ }
+ .color-input{
+    height: 4.375rem;
+    width: 4.375rem
+ }
+
+ 
