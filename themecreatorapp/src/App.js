@@ -18,6 +18,17 @@ function App() {
 
     setThemes(updatedThemes);
   }
+  function handleSaveTheme(newTheme) {
+    console.log(newTheme);
+    const modifiedState = themes.map((theme) => {
+      if (theme.id !== newTheme.id) {
+        return theme;
+      }
+      return newTheme;
+    });
+
+    setThemes(modifiedState);
+  }
   return (
     <>
       <header className="header">
@@ -30,11 +41,9 @@ function App() {
             return (
               <li key={theme.id}>
                 <Theme
-                  themeName={theme.name}
-                  themeColors={theme.colors}
-                  onDeleteTheme={() => {
-                    handleDeleteTheme(theme.id);
-                  }}
+                  theme={theme}
+                  onDeleteTheme={handleDeleteTheme}
+                  onSaveTheme={handleSaveTheme}
                 />
               </li>
             );

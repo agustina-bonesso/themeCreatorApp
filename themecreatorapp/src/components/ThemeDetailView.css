@@ -2,10 +2,11 @@
     display: grid;
     gap: 0.5rem;
   }
-  .delete__button{
+  button{
     padding-inline: 20px;
     padding-block: 10px;
     font-size: 1.2rem;
     border-radius: 4px;
     margin-top: 1.25rem;
+    margin: .9375rem;
   }

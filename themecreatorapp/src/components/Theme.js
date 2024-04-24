@@ -2,8 +2,8 @@ import { useState } from "react";
 import ThemeDetailView from "./ThemeDetailView";
 import ThemePreview from "./ThemePreview";
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
-import "./Theme.css"
-export default function Theme({ themeName, themeColors, onDeleteTheme }) {
+import "./Theme.css";
+export default function Theme({ theme, onDeleteTheme, onSaveTheme }) {
   const [showDetails, setShowDetails] = useState("false");
 
   function handleToggleView() {
@@ -11,8 +11,11 @@ export default function Theme({ themeName, themeColors, onDeleteTheme }) {
   }
   return (
     <section>
-      <button className="theme__toggle-details-button" onClick={handleToggleView}>
-        <h2 className="theme__title">{themeName}</h2>
+      <button
+        className="theme__toggle-details-button"
+        onClick={handleToggleView}
+      >
+        <h2 className="theme__title">{theme.name}</h2>
         {showDetails ? (
           <IconChevronUp size="3rem" />
         ) : (
@@ -20,9 +23,13 @@ export default function Theme({ themeName, themeColors, onDeleteTheme }) {
         )}
       </button>
       {showDetails ? (
-        <ThemePreview themeColors={themeColors} />
+        <ThemePreview themeColors={theme.colors} />
       ) : (
-        <ThemeDetailView themeColors={themeColors} onDeleteTheme={onDeleteTheme}/>
+        <ThemeDetailView
+          theme={theme}
+          onDeleteTheme={onDeleteTheme}
+          onSaveTheme={onSaveTheme}
+        />
       )}
     </section>
   );

@@ -1,12 +1,23 @@
 import "./ThemeForm.css";
+const INITIAL_THEME = {
+  name: "",
+  colors: [
+    { role: "primary", value: "#6200ee" },
+    { role: "secondary", value: "#03dac6" },
+    { role: "surface", value: "#ffffff" },
+    { role: "surface-on", value: "#000000" },
+  ],
+};
 
-export default function ThemeForm({ onAddTheme }) {
+export default function ThemeForm({ onAddTheme, isEditMode, initialData = INITIAL_THEME, onSaveTheme}) {
+ 
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
     const newTheme = {
+      id: initialData.id,
       name: data.name,
       colors: [
         { role: "primary", value: data.primary },
@@ -15,60 +26,48 @@ export default function ThemeForm({ onAddTheme }) {
         { role: "surface-on", value: data["surface-on"] },
       ],
     };
-    onAddTheme(newTheme);
+    
+    if(isEditMode){
+      console.log(newTheme)
+      onSaveTheme(newTheme)
+    }else{
+      onAddTheme(newTheme)
+    }
 
     event.target.reset();
     event.target.elements.name.focus();
   }
   return (
     <form className="form" onSubmit={handleSubmit}>
-      <div className="form__fields">
-        <div className="form__field">
-          <label className="form__label" htmlFor="name">
-            Name
-          </label>
-          <input
-            className="form__input"
-            id="name"
-            type="text"
-            name="name"
-            placeholder="Name"
-            defaultValue="My new Theme"
-            required
-          />
-          <div className="form-input__color">
-            <input
-              type="color"
-              aria-label="primary-color"
-              name="primary"
-              className="color-input"
-              defaultValue="#596088"
-            />
-            <input
-              type="color"
-              aria-label="secondary-color"
-              name="secondary"
-              className="color-input"
-              defaultValue="#D2D6DB"
-            />
-            <input
-              type="color"
-              aria-label="surface"
-              name="surface"
-              className="color-input"
-              defaultValue="#F8C7CC"
-            />
-            <input
-              type="color"
-              aria-label="surface-on"
-              name="surface-on"
-              className="color-input"
-              defaultValue="#F4F1DE"
-            />
-          </div>
-        </div>
+      <h2 className="theme-form__title">
+        {isEditMode ? "Edit Mode" : "Add Theme"}
+      </h2>
+      <div className="form__field">
+        <input
+          aria-label="theme title"
+          className="theme-form__name-input"
+          type="text"
+          placeholder="Theme Name"
+          name="name"
+          defaultValue={initialData.name}
+          required
+        />
+        <fieldset className="form-input__color">
+          {initialData.colors.map((color) => {
+            return (
+              <input
+                key={color.role}
+                className="color-input"
+                type="color"
+                name={color.role}
+                aria-label={color.role}
+                defaultValue={color.value}
+              />
+            );
+          })}
+        </fieldset>
         <button type="submit" className="form__button">
-          Add Theme
+          {isEditMode ? "Save Theme" : "Add Theme"}
         </button>
       </div>
     </form>
