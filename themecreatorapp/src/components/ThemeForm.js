@@ -1,3 +1,4 @@
+import ColorPicker from "./ColorPicker";
 import "./ThemeForm.css";
 const INITIAL_THEME = {
   name: "",
@@ -9,8 +10,12 @@ const INITIAL_THEME = {
   ],
 };
 
-export default function ThemeForm({ onAddTheme, isEditMode, initialData = INITIAL_THEME, onSaveTheme}) {
- 
+export default function ThemeForm({
+  onAddTheme,
+  isEditMode,
+  initialData = INITIAL_THEME,
+  onSaveTheme,
+}) {
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -26,12 +31,11 @@ export default function ThemeForm({ onAddTheme, isEditMode, initialData = INITIA
         { role: "surface-on", value: data["surface-on"] },
       ],
     };
-    
-    if(isEditMode){
-      console.log(newTheme)
-      onSaveTheme(newTheme)
-    }else{
-      onAddTheme(newTheme)
+
+    if (isEditMode) {
+      onSaveTheme(newTheme);
+    } else {
+      onAddTheme(newTheme);
     }
 
     event.target.reset();
@@ -55,14 +59,9 @@ export default function ThemeForm({ onAddTheme, isEditMode, initialData = INITIA
         <fieldset className="form-input__color">
           {initialData.colors.map((color) => {
             return (
-              <input
-                key={color.role}
-                className="color-input"
-                type="color"
-                name={color.role}
-                aria-label={color.role}
-                defaultValue={color.value}
-              />
+              <li key={color.role}>
+                <ColorPicker color={color} />
+              </li>
             );
           })}
         </fieldset>

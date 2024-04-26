@@ -2,11 +2,18 @@ import { useState } from "react";
 import ColorCard from "./ColorCard";
 import "./ThemeDetailView.css";
 import ThemeForm from "./ThemeForm.js";
+import TestPage from "./TestPage.js";
 
 export default function ThemeDetailView({ theme, onDeleteTheme, onSaveTheme }) {
   const [displayState, setDisplayState] = useState("Detail");
   function handleEditView() {
     setDisplayState("Edit");
+  }
+  function handleTestTheme() {
+    setDisplayState("Test");
+  }
+  function handleCloseTestView() {
+    setDisplayState("Detail");
   }
   return (
     <>
@@ -19,11 +26,19 @@ export default function ThemeDetailView({ theme, onDeleteTheme, onSaveTheme }) {
               </li>
             ))}
           </ul>
-          <button onClick={() => {onDeleteTheme(theme.id)}} type="button">
+          <button
+            onClick={() => {
+              onDeleteTheme(theme.id);
+            }}
+            type="button"
+          >
             Delete Theme
           </button>
           <button onClick={handleEditView} type="button">
             Edit Theme
+          </button>
+          <button onClick={handleTestTheme} type="button">
+            Try Me!
           </button>
         </>
       )}
@@ -35,8 +50,10 @@ export default function ThemeDetailView({ theme, onDeleteTheme, onSaveTheme }) {
             onSaveTheme(theme);
             setDisplayState("Detail");
           }}
-
         />
+      )}
+      {displayState === "Test" && (
+        <TestPage theme={theme} onCloseTestView={handleCloseTestView} />
       )}
     </>
   );
