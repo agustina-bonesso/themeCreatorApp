@@ -1,5 +1,6 @@
 import ColorPicker from "./ColorPicker";
 import "./ThemeForm.css";
+import Button from "./Button";
 const INITIAL_THEME = {
   name: "",
   colors: [
@@ -42,7 +43,7 @@ export default function ThemeForm({
     event.target.elements.name.focus();
   }
   return (
-    <form className="form" onSubmit={handleSubmit}>
+    <form className="theme-form" onSubmit={handleSubmit}>
       <h2 className="theme-form__title">
         {isEditMode ? "Edit Mode" : "Add Theme"}
       </h2>
@@ -56,7 +57,7 @@ export default function ThemeForm({
           defaultValue={initialData.name}
           required
         />
-        <fieldset className="form-input__color">
+        <fieldset className="theme-form__input-color">
           {initialData.colors.map((color) => {
             return (
               <li key={color.role}>
@@ -65,9 +66,7 @@ export default function ThemeForm({
             );
           })}
         </fieldset>
-        <button type="submit" className="form__button">
-          {isEditMode ? "Save Theme" : "Add Theme"}
-        </button>
+        <Button type="submit">{isEditMode ? "Update Theme" : "Add Theme"}</Button>
       </div>
     </form>
   );

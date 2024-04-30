@@ -3,6 +3,7 @@ import ColorCard from "./ColorCard";
 import "./ThemeDetailView.css";
 import ThemeForm from "./ThemeForm.js";
 import TestPage from "./TestPage.js";
+import Button from "./Button.js";
 
 export default function ThemeDetailView({ theme, onDeleteTheme, onSaveTheme }) {
   const [displayState, setDisplayState] = useState("Detail");
@@ -26,20 +27,20 @@ export default function ThemeDetailView({ theme, onDeleteTheme, onSaveTheme }) {
               </li>
             ))}
           </ul>
-          <button
+          <Button
             onClick={() => {
               onDeleteTheme(theme.id);
             }}
             type="button"
           >
             Delete Theme
-          </button>
-          <button onClick={handleEditView} type="button">
+          </Button>
+          <Button onClick={handleEditView} type="button">
             Edit Theme
-          </button>
-          <button onClick={handleTestTheme} type="button">
-            Try Me!
-          </button>
+          </Button>
+          <Button onClick={handleTestTheme} type="button">
+            Try me!
+          </Button>
         </>
       )}
       {displayState === "Edit" && (

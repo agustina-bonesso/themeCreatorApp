@@ -7,7 +7,7 @@ export default function ThemePreview({ themeColors }) {
         {themeColors.map((color) => {
           return (
             <li key={color.role}>
-              <div style={{ backgroundColor: color.value }} className="color-box"></div>
+              <div style={{ backgroundColor: color.value }} className="preview__color-box"></div>
             </li>
           );
         })}

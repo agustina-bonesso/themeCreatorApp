@@ -1,11 +1,7 @@
-.color-list {
-    display: grid;
-    gap: 0.5rem;
-  }
-  .deatil-view__button{
+.button {
     padding-inline: 20px;
     padding-block: 10px;
     font-size: 1rem;
     border-radius: 4px;
-    margin: .75rem
+    margin: 0.75rem;
   }

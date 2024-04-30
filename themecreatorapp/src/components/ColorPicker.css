@@ -1,12 +1,13 @@
 .color-hex-value__input {
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 .input-fields {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
 }
-.color-box__input {
+.color-input__box {
   width: 12.5rem;
-  height: 12.5rem
+  height: 12.5rem;
+  border-radius: 0.625rem;
 }

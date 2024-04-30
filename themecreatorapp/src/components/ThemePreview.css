@@ -1,8 +1,9 @@
 .color-list__preview {
-    display: flex;
-    gap: .625rem
+  display: flex;
+  gap: 0.625rem;
 }
-.color-box {
+.preview__color-box {
   height: 4.375rem;
   width: 4.375rem;
+  border-radius: 0.1875rem;
 }
