@@ -11,7 +11,7 @@ export default function ColorPicker({ color }) {
   return (
     <div className="input-fields">
       <input
-        className="color-box__input"
+        className="color-input__box"
         type="color"
         name={color.role}
         aria-label={color.role}
